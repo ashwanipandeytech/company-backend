@@ -50,7 +50,7 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD_STAGE }}
           port: 22 
           script: |
-            cd /domains/demohandler.in/public_html/company-backend/
+            cd /domains/demohandler.in/public_html/backendhandler/
 
             # ==========================================
             # OPTION 1: FIRST TIME SETUP
