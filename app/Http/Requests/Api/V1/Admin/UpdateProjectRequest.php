@@ -21,11 +21,14 @@ class UpdateProjectRequest extends FormRequest
 
     public function rules(): array
     {
+        // Safely extract the ID only if the route has a bound model
+        $project = $this->route('project');
+        $projectId = $project ? $project->id : null;
+
         return [
             'client_id' => ['nullable', 'exists:clients,id'],
             'title' => ['sometimes', 'required', 'string', 'max:255'],
-            // Ignore the current project ID when checking slug uniqueness
-            'slug' => ['sometimes', 'required', 'string', 'unique:projects,slug,' . $this->route('project')->id],
+            'slug' => ['sometimes', 'required', 'string', 'unique:projects,slug,' . $projectId],
             'description' => ['nullable', 'string'],
             'thumbnail' => ['nullable', 'image', 'mimes:jpeg,png,jpg,webp', 'max:2048'],
             'status' => ['sometimes', 'required', 'in:ongoing,completed,archived'],

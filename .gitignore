@@ -44,3 +44,11 @@ Thumbs.db
 .phpactor.json
 Homestead.json
 Homestead.yaml
+
+# Scribe API Documentation
+.scribe/
+
+# Ensure the Postman collection is tracked by Git
+!storage/app/private/
+!storage/app/private/scribe/
+!storage/app/private/scribe/collection.json
