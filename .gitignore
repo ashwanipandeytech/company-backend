@@ -47,6 +47,7 @@ Homestead.yaml
 
 # Scribe API Documentation
 .scribe/
+config/scribe.php
 
 # Ensure the Postman collection is tracked by Git
 !storage/app/private/
