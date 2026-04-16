@@ -16,16 +16,21 @@ class AuthService
     {
         $user = User::where('email', $credentials['email'])->first();
 
+        // 1. Check if user exists and password is correct
         if (! $user || ! Hash::check($credentials['password'], $user->password)) {
             throw ValidationException::withMessages([
                 'email' => ['Invalid login credentials.'],
             ]);
         }
 
-        if ($user->role !== 'admin') {
+        // 2. Allow specific roles to access the admin panel
+        $allowedRoles = ['superadmin', 'admin', 'manager', 'editor'];
+        
+        if (! in_array($user->role, $allowedRoles)) {
             throw new AccessDeniedHttpException('Unauthorized access.');
         }
 
+        // 3. Generate token
         $token = $user->createToken('admin-dashboard-token')->plainTextToken;
 
         return [
