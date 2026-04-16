@@ -11,7 +11,7 @@ class Client extends Model
         'name', 
         'logo_url', 
         'website_url', 
-        'is_active',
+        'is_active'
     ];
 
     protected $casts = [
