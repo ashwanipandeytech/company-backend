@@ -1,0 +1,46 @@
+# Laravel Core
+/vendor
+/node_modules
+/public/build
+/public/hot
+/public/storage
+/storage/*.key
+/storage/pail
+
+# Environment & Config
+.env
+.env.backup
+.env.production
+.phpunit.result.cache
+/.phpunit.cache
+auth.json
+
+# Logs & Databases
+*.log
+*.sqlite
+*.sqlite3
+database/database.sqlite
+/storage/app/**
+/storage/framework/**
+/storage/logs/**
+/bootstrap/cache/**
+
+# Keep empty directories for deployment
+!storage/app/public/.gitignore
+!storage/framework/cache/.gitignore
+!storage/framework/sessions/.gitignore
+!storage/framework/views/.gitignore
+!storage/logs/.gitignore
+!bootstrap/cache/.gitignore
+
+# OS & IDE Files
+.DS_Store
+Thumbs.db
+/.fleet
+/.idea
+/.nova
+/.vscode
+/.zed
+.phpactor.json
+Homestead.json
+Homestead.yaml
