@@ -18,13 +18,13 @@ jobs:
       - name: Deploy files to Hostinger
         uses: SamKirkland/FTP-Deploy-Action@4.3.3
         with:
-          server: ${{ secrets.FTP_SERVER_STAGE }}
-          username: ${{ secrets.FTP_USERNAME_STAGE }}
-          password: ${{ secrets.FTP_PASSWORD_STAGE }}
+          server: ${{ secrets.FTP_SERVER_LIVE }}
+          username: ${{ secrets.FTP_USERNAME_LIVE }}
+          password: ${{ secrets.FTP_PASSWORD_LIVE }}
           port: 21
           protocol: ftp
           local-dir: ./
-          server-dir: /domains/demohandler.in/public_html/company-backend/
+          server-dir: /domains/demohandler.in/public_html/backendhandler/
           dangerous-clean-remote: false
           exclude: |
             **/.git*/**
@@ -40,34 +40,4 @@ jobs:
             **/bootstrap/cache/**
             **/vendor/**
 
-      # STEP 2: RUN COMMANDS (SSH)
-      # This logs into the server terminal to install packages and generate keys.
-      - name: Run Artisan Commands via SSH
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.SSH_HOST_STAGE }}
-          username: ${{ secrets.SSH_USERNAME_STAGE }}
-          password: ${{ secrets.SSH_PASSWORD_STAGE }}
-          port: 22 
-          script: |
-            cd /domains/demohandler.in/public_html/backendhandler/
-
-            # ==========================================
-            # OPTION 1: FIRST TIME SETUP
-            # ==========================================
-            cp .env.example .env
-            composer install --optimize-autoloader --no-dev
-            php artisan key:generate
-            php artisan storage:link
-
-            # ==========================================
-            # OPTION 2: ROUTINE DEPLOYMENTS (COMMENTED OUT FOR NOW)
-            # ==========================================
-            # php artisan down || true
-            # composer install --optimize-autoloader --no-dev
-            # php artisan migrate --force
-            # php artisan optimize:clear
-            # php artisan config:cache
-            # php artisan route:cache
-            # php artisan view:cache
-            # php artisan up
+      
