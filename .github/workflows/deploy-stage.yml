@@ -24,7 +24,7 @@ jobs:
           port: 21
           protocol: ftp
           local-dir: ./
-          server-dir: ./backendhandler/
+          server-dir: /backendhandler/
           dangerous-clean-remote: false
           exclude: |
             **/.git*/**
