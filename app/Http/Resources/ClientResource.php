@@ -11,8 +11,7 @@ class ClientResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
-            // Use the exact DB column name from your screenshot
+            'name' => $this->name,            
             'logo' => $this->logo_url ? asset('storage/' . $this->logo_url) : null,
             'website' => $this->website_url, 
         ];
