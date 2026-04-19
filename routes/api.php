@@ -44,9 +44,16 @@ Route::prefix('v1')->group(function () {
         Route::middleware('auth:sanctum')->group(function () {
             Route::post('/logout', [AuthController::class, 'logout']);
             
-            // Resource CRUD
-            Route::apiResource('clients', AdminClientController::class);
-            Route::apiResource('projects', AdminProjectController::class);
+            // ==========================================
+            // MULTIPART UPDATE FIX
+            // Explicitly define POST routes to handle file uploads correctly
+            // ==========================================
+            Route::post('clients/{client}', [AdminClientController::class, 'update']);
+            Route::post('projects/{project}', [AdminProjectController::class, 'update']);
+
+            // Resource CRUD (Excluding default PUT/PATCH updates)
+            Route::apiResource('clients', AdminClientController::class)->except(['update']);
+            Route::apiResource('projects', AdminProjectController::class)->except(['update']);
             
             // Enquiries (Read & Update Status)
             Route::get('enquiries', [AdminEnquiryController::class, 'index']);
