@@ -14,8 +14,8 @@ class ProjectResource extends JsonResource
             'title' => $this->title,
             'slug' => $this->slug,
             'description' => $this->description,
-          
-            'thumbnail' => $this->thumbnail ? asset('storage/' . $this->thumbnail) : null,
+            // Use the exact DB column name from your screenshot
+            'thumbnail' => $this->thumbnail_url ? asset('storage/' . $this->thumbnail_url) : null,
             'status' => $this->status,
             'client' => new ClientResource($this->whenLoaded('client')), 
         ];

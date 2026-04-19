@@ -12,9 +12,9 @@ class ClientResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            // Check the raw DB column ($this->logo). If it exists, build the URL.
-            'logo' => $this->logo ? asset('storage/' . $this->logo) : null,
-            'website' => $this->website_url, // Make sure this matches your DB column exactly
+            // Use the exact DB column name from your screenshot
+            'logo' => $this->logo_url ? asset('storage/' . $this->logo_url) : null,
+            'website' => $this->website_url, 
         ];
     }
 }
