@@ -14,9 +14,9 @@ class ProjectResource extends JsonResource
             'title' => $this->title,
             'slug' => $this->slug,
             'description' => $this->description,
-            'thumbnail' => $this->thumbnail_url ? asset($this->thumbnail_url) : null,
+            // Check the raw DB column ($this->thumbnail). If it exists, build the URL.
+            'thumbnail' => $this->thumbnail ? asset('storage/' . $this->thumbnail) : null,
             'status' => $this->status,
-            // Safely conditionally load the relationship
             'client' => new ClientResource($this->whenLoaded('client')), 
         ];
     }

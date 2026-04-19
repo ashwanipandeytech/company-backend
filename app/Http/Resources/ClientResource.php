@@ -7,19 +7,14 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class ClientResource extends JsonResource
 {
-    /**
-     * Transform the resource into an array.
-     *
-     * @return array<string, mixed>
-     */
     public function toArray(Request $request): array
     {
         return [
             'id' => $this->id,
             'name' => $this->name,
-            // Use Laravel's Storage facade to generate the full public URL
-            'logo' => $this->logo_url ? \Illuminate\Support\Facades\Storage::url($this->logo_url) : null,
-            'website' => $this->website_url,
+            // Check the raw DB column ($this->logo). If it exists, build the URL.
+            'logo' => $this->logo ? asset('storage/' . $this->logo) : null,
+            'website' => $this->website_url, // Make sure this matches your DB column exactly
         ];
     }
 }
