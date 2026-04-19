@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\V1\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\V1\Admin\StoreClientRequest;
+use App\Http\Requests\Api\V1\Admin\UpdateClientRequest;
 use App\Models\Client;
 use App\Http\Resources\ClientResource;
 use Illuminate\Http\JsonResponse;
