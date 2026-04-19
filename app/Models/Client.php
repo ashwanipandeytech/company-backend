@@ -24,10 +24,10 @@ class Client extends Model
         return $this->hasMany(Project::class);
     }
 
-    protected function logoUrl(): Attribute
-    {
-        return Attribute::make(
-            get: fn () => $this->logo ? asset('storage/' . $this->logo) : null,
-        );
-    }
+    // protected function logoUrl(): Attribute
+    // {
+    //     return Attribute::make(
+    //         get: fn () => $this->logo ? asset('storage/' . $this->logo) : null,
+    //     );
+    // }
 }

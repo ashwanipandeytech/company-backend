@@ -22,10 +22,10 @@ class Project extends Model
         return $this->belongsTo(Client::class);
     }
 
-    protected function thumbnailUrl(): Attribute
-    {
-        return Attribute::make(
-            get: fn () => $this->thumbnail ? asset('storage/' . $this->thumbnail) : null,
-        );
-    }
+    // protected function thumbnailUrl(): Attribute
+    // {
+    //     return Attribute::make(
+    //         get: fn () => $this->thumbnail ? asset('storage/' . $this->thumbnail) : null,
+    //     );
+    // }
 }
