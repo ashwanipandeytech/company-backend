@@ -11,7 +11,7 @@ class ProjectController extends Controller
 {
     public function index(): JsonResponse
     {
-        $projects = Project::with('client:id,name')->where('status', 'completed')->get();
+        $projects = Project::with('client:id,name')->whereIn('status', ['completed', 'ongoing'])->get();
         
         return $this->successResponse(
             ProjectResource::collection($projects), 
